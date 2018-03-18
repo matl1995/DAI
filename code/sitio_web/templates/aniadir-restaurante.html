@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block columnaderecha %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            {% if not respuesta %}
+                <div class="col-12" id="formulario-modificar">
+                    <div class="row justify-content-center">
+                        <form method="post">
+                            {% csrf_token %}
+                            <h5>Añadir restaurante:</h5>
+                            <div>
+                                {% for field in form %}
+                                    <div class="col-12" id="input-modificar">
+                                        <div class="row justify-content-center">
+                                            {{ field.label }}
+                                            <br>
+                                            {{ field }}{{ field.errors }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <button class="btn btn-primary" id="boton-modificar" type="submit">Añadir</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                {% for item in respuesta %}
+                    <div class="col-auto container-fluid" id="columna-tarjetas">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.name}}</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">Tipo: {{item.cuisine}}</h6>
+                                <p class="card-text">Barrio: {{item.borough}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+       	</div>
+    </div>
+{% endblock %}

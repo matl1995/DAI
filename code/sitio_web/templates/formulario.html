@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block columnaderecha %}
+    <form method="post" id="formulario-registro">
+        <div class="form-group">
+            <label for="inputNombre">Nombre: {{nombre}}</label>
+            <input type="text" name="nombre" class="form-control" id="inputNombre" required value={{nombre}}>
+        </div>
+
+        <div class="form-group">
+            <label for="inputApellidos">Apellidos: {{apellidos}}</label>
+            <input type="text" name="apellidos" class="form-control" id="inputApellidos" required value={{apellidos}}>
+        </div>
+
+        <div class="form-group">
+            <label for="inputUsuario">Usuario: {{usuario}}</label>
+            <input type="text" name="usuario" class="form-control" id="inputUsuario" required value={{usuario}}>
+        </div>
+
+        <div class="form-group">
+            <label for="inputContrasena">Contraseña: {{contrasena}}</label>
+            <input type="password" name="contrasena" class="form-control" id="inputContrasena" required value={{contrasena}}>
+        </div>
+
+        {% if usuario is not defined %}
+            <input type="submit" id="registrarse" class="btn btn-primary" value="Registrar">
+        {% else %}
+            <input type="submit" id="registrarse" class="btn btn-primary" value="Modificar">
+        {% endif %}
+    </form>
+{% endblock %}

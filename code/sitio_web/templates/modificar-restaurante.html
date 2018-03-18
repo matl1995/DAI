@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block columnaderecha %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+           	<div class="col-auto container-fluid" id="columna-tarjetas">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{nombre}}</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Tipo: {{cocina}}</h6>
+                        <p class="card-text">Barrio: {{barrio}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <h3>Ubicación</h3>
+                <div id="map"></div>
+                <script>
+                  function initMap() {
+                    var uluru = {lat: {{lon}}, lng: {{lat}}};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 4,
+                      center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                      position: uluru,
+                      map: map
+                    });
+                  }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6LA5_ksgmHSfeRpzwj7bbTHW2YH9QEwQ&callback=initMap">
+                </script>
+            </div>
+
+            <div class="col-12" id="formulario-modificar">
+                <div class="row justify-content-center">
+                    <form method="post">
+                        {% csrf_token %}
+                        <h5>Modificar cocina:</h5>
+                        <div>
+                            {% for field in form %}
+                                <div class="col-12" id="input-modificar">
+                                    <div class="row justify-content-center">
+                                        {{ field.label }}
+                                        <br>
+                                        {{ field }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <button class="btn btn-primary" id="boton-modificar" type="submit">Modificar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+       	</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        {% block head %}
+            <title>Pagina web</title>
+            <meta charset="UTF-8">
+            <meta content="Nombre del Autor" name="Miguel Ángel Torres López"/>
+            <!--Etiqueta para hacer responsive para moviles y tablet-->
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!--Mi hoja de estilo-->
+            <link rel="stylesheet" type="text/css" href="{% static 'css/hoja_estilo_p5.css' %}">
+            <!--Hoja de estilo de bootstrap-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+            <!--Añado jQuery-->
+            <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+            <!--Añado los scripts de jQuery necesarios-->
+            <script type="text/javascript" src="{% static 'js/color-letra.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/tamanio-letra.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/menu-enlace.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/paginador.js' %}"></script>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+        {% endblock %}
+    </head>
+    
+    <body>
+        
+        <!--Contenido header-->
+        <header class="container-fluid">
+            <div class="row justify-content-around">
+                {% block header %}
+                    <div id="logo-titulo-subtitulo" class="col-auto">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" class="img-responsive" style="max-height:5em"/></a>
+                        <p id="texto-logo">Círculo</p>
+                        <p id="texto-logo">El circulo es redondo</p>
+                    </div>
+                    <!--Genero una secuencia if, de tal forma que si se ha iniciado sesion genera un trozo de cabecera distinto-->
+                    <div id="formulario-inicio-sesion" class="col-auto">
+                        {% if request.user.is_authenticated %}
+                            <div id="logout-cabecera">
+                                <p>Bienvenid@ {{request.user}}</p>
+                                <button type="button" class="btn btn-outline-light" onclick="location.href='{% url 'auth_logout' %}?next=/restaurantes/'">Log out</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </div>
+        </header>
+
+        <div class="container-fluid" id="contenido-central">
+            <div class="row justify-content-center">
+            {% block filacentral %}
+                <!--Contenido de la columna izquierda-->
+                <div class="col" id="columnaizquierda">
+                {% block columnaizquierda %}
+                    <div id="botones" class="container-fluid row justify-content-center">
+                        <button class="btn btn-info">Menu de cambios</button>
+                        <div id="botones1" class="col-12">
+                            <div class="row justify-content-around">
+                                <button id="tamanio" class="btn btn-primary">Cambiar tamaño</button>
+                                <button id="color" class="btn btn-primary">Cambiar color</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Genero una secuencia if, de tal forma que si se ha iniciado sesion genera un menu distinto-->
+                    <div class="list-group">
+                        <li class="list-group-item list-group-item-success">Menú:</li>
+                        <a class="list-group-item list-group-item-action" href="{% url 'svg' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SVG</a>
+                        <a class="list-group-item list-group-item-action" href="{% url 'restaurantes' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restaurantes</a>
+                        {% if not request.user.is_authenticated%}
+                        <a class="list-group-item list-group-item-action" href="{% url 'auth_login' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</a>
+                        <a class="list-group-item list-group-item-action" href="{% url 'registration_register' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Registro</a>
+
+                        <!--<li class="list-group-item list-group-item-success">Ultimas páginas visitadas:</li>
+                        <a class="list-group-item list-group-item-action" href="{% url 'index' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ultima página visitada: {{ult|truncatechars:10}}</a>
+                        <a class="list-group-item list-group-item-action" href="{% url 'index' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Penultima página visitada: {{pen|truncatechars:10}}</a>
+                        <a class="list-group-item list-group-item-action" href="{% url 'index' %}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Antepenultima página visitada: {{ant|truncatechars:10}}</a>-->
+                        {% endif %}
+                    </div>  
+                {% endblock %}
+                </div>
+
+                <!--Contenido de la columna derecha-->
+                <div class="col-md-auto" id="columnaderecha">
+                {% block columnaderecha %}
+                    <!--Genero una secuencia if, de tal forma que si se ha iniciado sesion genera la columna derecha distinta-->
+                    {% if usuario is not defined %}
+                        <h1>Bienvenido a la pagina principal.</h1>
+                    {% else %}
+                        <h1>Bienvenido a la pagina principal {{usuario}}.</h1>
+                    {% endif %}
+                    <img src="{% static 'img/dog.jpg' %}" class="img-responsive" height="70%" width="90%" />
+                {% endblock %}
+                </div>
+            {% endblock %}
+            </div>
+        </div>
+
+        <!--Contenido footer-->
+        <footer class="container-fluid">
+        {% block footer %}
+            <p>Autor: Miguel Ángel Torres López <br> Licencia de la página</p>
+        {% endblock %}
+        </footer>
+        
+        <!--Javascript de bootstrap-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    </body>
+</html>

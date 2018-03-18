@@ -1,0 +1,177 @@
+/************************************************Cabecera**************************************************/
+header
+{
+	background: #333 !important;
+	color: white !important;
+	font-size: 0.8em !important;
+}
+
+header input
+{
+	height: 1.7em;
+	width: 13em;
+}
+
+#logout-cabecera
+{
+	padding-top: 2.5em;
+}
+
+#logout-cabecera p
+{
+	margin-bottom: 1em;
+}
+
+#logout-cabecera button
+{
+	margin-left: 1em;
+}
+
+#formulario-inicio-sesion
+{
+	padding-right: 1em;
+	font-size: 1.1em;
+}
+
+#formulario-inicio-sesion input
+{
+	width: 100%;
+	margin-top: -0.5em;
+	margin-bottom: -1em;
+}
+
+#formulario-inicio-sesion input[type=submit]
+{
+	padding-top: 0.1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+#logo-titulo-subtitulo
+{
+	padding-left: 1em;
+	padding-top: 1em;
+}
+
+#logo-titulo-subtitulo p
+{
+	margin-top: 0.4em;
+	margin-bottom: 0.2em;
+}
+
+/*************************************************Contenido central*****************************************************/
+#contenido-central
+{
+	min-height: 28.2em !important;
+	background: #38202e;
+	color: white !important;
+	padding-top: 1em;
+	padding-bottom: 2em;
+}
+
+#botones
+{
+	margin-bottom: 1em;
+}
+
+#botones1
+{
+	margin-top: 1em;
+	display: none;
+	margin-bottom: 1em;
+}
+
+#columnaderecha
+{
+	min-width: 60%;
+	padding-top: 1em;
+	font-size: 1em;
+}
+
+#formulario-registro input
+{
+	width: 90% !important;
+	height: 2.3em !important;
+}
+
+#formulario-registro input[type=submit]
+{
+	width: 40% !important;
+	height: 4em !important;
+}
+
+#formulario-registro button[type=submit]
+{
+	width: 30% !important;
+	height: 3em !important;
+}
+
+#columnaderecha h1
+{
+	font-size: 2em;
+}
+
+#contenedor-resultado-restaurantes
+{
+	margin-bottom: 3em;
+}
+
+#columna-tarjetas
+{
+	max-width: 100%;
+	margin-top: 2em;
+	color: #333;
+}
+
+#barra-busqueda-restaurantes
+{
+	padding-bottom: 2em;
+}
+
+#paginador
+{
+	margin-top: 3em;
+}
+
+#formulario-modificar
+{
+	margin-top: 2em;
+}
+
+#boton-modificar
+{
+	margin-top: 1em;
+	margin-left: 4%;
+}
+
+#input-modificar
+{
+	margin-top: 1em;
+}
+
+#map{
+	width: 100%;
+	height: 400px;
+	background-color: grey;
+}
+
+#grafico{
+	margin-top: 2em !important;
+}
+
+/*************************************************Pie*****************************************************/
+footer
+{
+	background: #333 !important;
+	color: white !important;
+	font-size: 0.7em !important;
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+footer p
+{
+	font-size: 1.2em;
+	margin-bottom: 0em !important;
+}

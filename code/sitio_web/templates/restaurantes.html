@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block columnaderecha %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="inputBarrio">Buscar por barrio:</label>
+        <div class="input-group" id="barra-busqueda-restaurantes">
+            {{ form }}
+            <!--<input type="text" name="barrio" class="form-control" id="inputBarrio" placeholder="Bronx">-->
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </span>
+        </div>
+    </form>
+    <div class="row justify-content-center">
+        <div class="col-12">
+             <button class="btn btn-primary" onclick="location.href='{% url 'aniadirrestaurante' %}'">Añadir restaurante</button>
+        </div>
+    </div>
+
+    <div id="grafico" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+    <script src="{% static 'js/highcharts.js' %}"></script>
+{% endblock %}
